@@ -1,0 +1,28 @@
+{
+  "name": "user_login_registration",
+  "version": "1.0.0",
+  "description": "simple user registration and login system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "ejs",
+    "express",
+    "mysql"
+  ],
+  "author": "sagar pariyar",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "mysql2": "^3.14.0",
+    "nodemailer": "^6.10.0",
+    "nodemon": "^3.1.9"
+  }
+}
