@@ -1,6 +1,5 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
 const session = require('express-session');
 
 const routes = require('./routes/auth.routes');
@@ -23,11 +22,11 @@ app.use(express.static('public'));
 app.use(session({ 
     secret: process.env.SESSION_SECRET, 
     resave: false, 
-    saveUninitialized: true 
+    saveUninitialized: true ,
+    cookie: { secure: false }
 }));
 
-//db connection
-connectDB;
+
 
 //routes
 app.use('/', routes);

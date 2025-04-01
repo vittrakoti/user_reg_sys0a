@@ -27,18 +27,34 @@ exports.register = async (req, res) => {
 exports.login = (req, res) => {
     const { email, password } = req.body;
 
-    User.findUserByEmail(email, async (err, user) => {
-        if(err || result.length === 0){
-            res.send("Invvalid credentials");
-
-            const user = result[0];
-            const isPasswordMatch = await bcrypt.compare(password, user.password);
-
-            if (isPasswordMatch) {
-                req.session.user = user;
-                res.redirect('/dashboard');                    
-            }
+    User.getUserByEmail(email, async (err, user) => {
+        console.log("auth controller:", err, user);
+        
+        // 1. Check for errors or missing user
+        if(err ||!user || user.length === 0){
+            return res.status(401).send("Invalid email or password");
         }
+
+        // 2. Compare passwords
+        try{
+            const dbUser = user[0];
+            const isPasswordMatch = await bcrypt.compare(password, dbUser.password);
+
+            // 3. Save user to session and respond
+            if (isPasswordMatch) {
+                req.session.user = dbUser;
+                return res.redirect('/dashboard');                    
+            }else{
+                return res.status(401).send("Invalid password");
+            }
+        }catch(bcryptErr){
+            console.error("Bcrypt error:", bcryptErr);
+            return res.status(500).send("Server error")
+        }
+            
+
+           
+       
     });
 };
 
