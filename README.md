@@ -7,6 +7,7 @@ The system allows users to register, log in, log out, reset passwords, and featu
 
 auth-system/
 │── node_modules/                # Installed dependencies
+
 │── public/                      # Static files (CSS, JS, images)
 │   ├── css/
 │   │   ├── styles.css
