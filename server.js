@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const session = require('express-session');
 
 const routes = require('./routes/auth.routes');
+const adminRoutes = require('./routes/admin.routes');
 
 
 
@@ -30,5 +31,6 @@ app.use(session({
 
 //routes
 app.use('/', routes);
+app.use('/admin', adminRoutes);
 
 app.listen(port, ()=>{console.log(`Listening on port http://localhost:${port}`);})

@@ -24,7 +24,7 @@ const User = {
         });
     },
     // Update user details
-    update: (id, name, email, role, callback) => {
+    updateUser: (id, name, email, role, callback) => {
         db.query("UPDATE users SET name = ?, email = ?, role = ? WHERE id = ?", 
             [name, email, role, id], 
             (err, result) => {
@@ -34,7 +34,7 @@ const User = {
         );
     },
      // Delete user
-     delete: (id, callback) => {
+     deleteUser: (id, callback) => {
         db.query("DELETE FROM users WHERE id = ?", [id], (err, result) => {
             if (err) return callback(err, null);
             callback(null, result);
