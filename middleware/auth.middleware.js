@@ -7,12 +7,6 @@ exports.isAuthenticated = (req, res, next) => {
     next();
 };
 
-exports.isAdmin = (req, res, next) =>{
-    if(!req.session.user || req.session.user.role !== "admin"){
-        return res.status(403).send("Access denied");
-    }
-    next();
-};
 exports.verifyAdmin = (req, res, next) =>{
     const token = req.headers.authorization?.split(" ")[1];
 

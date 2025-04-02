@@ -4,8 +4,12 @@ const authController = require('../controllers/users.controller');
 //const authMiddleware = require('../middleware/auth.middleware');
 
 // Register route
-router.get("/", (req, res) =>{res.render("index");});
-router.get("/register", (req, res) =>{res.render("index");});
+router.get("/", (req, res) =>{
+    res.render("index", {title: "Home", link: "style.css", active: "active"});
+});
+router.get("/register", (req, res) =>{
+    res.render("index", {title: "Home", link: "style.css", active: "active"});
+});
 router.post("/register", authController.register);
 
 // Login route  
